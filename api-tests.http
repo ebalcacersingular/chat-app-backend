@@ -1,0 +1,62 @@
+# Define variables at the top of the file
+@baseUrl = https://bbhwwx4n-3010.use2.devtunnels.ms
+@accessToken1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NWY5ZjQyNC1lNWMxLTRjNjYtYmRlNi0zNDE2MTAxOWI5NTciLCJpYXQiOjE3MjUzMTUzNTMsImV4cCI6MTcyNTMxODk1M30.dv5bygJs06SxjCwiPLv81BSBgLXH2E9R6hXOe4jafss
+@accessToken2 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5MzBmYmI2NS1jYjE4LTQ1YzktYTJlZS0xZDExODkwZmQ0MmYiLCJpYXQiOjE3MjUyODY5NDIsImV4cCI6MTcyNTI5MDU0Mn0.nOEVLjKGc-UPSTCjofvGAqmLeObkk-Udcy5RB7m1WDo
+
+### Register a new user
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "testuser3@example.com",
+  "username": "testuser3",
+  "password": "Password123!"
+}
+
+### Login a user
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "balka03@gmail.com",
+  "password": "balka03@"
+}
+
+### Fetch user data (protected route example)
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{accessToken1}}
+### Fetch user data (protected route example)
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{accessToken2}}
+
+### Send a message
+POST {{baseUrl}}/api/messages/send
+Content-Type: application/json
+Authorization: Bearer {{accessToken1}}
+
+{
+  "receiverUid": "930fbb65-cb18-45c9-a2ee-1d11890fd42f",
+  "content": "Hello, how are you?"
+}
+
+### Send a message
+POST {{baseUrl}}/api/messages/send
+Content-Type: application/json
+Authorization: Bearer {{accessToken2}}
+
+{
+  "receiverUid": "ab11bf39-ee62-4505-8b75-0fd590430967",
+  "content": "Hi, I'm fine and you?"
+}
+
+### Get conversation messages
+GET {{baseUrl}}/api/messages/conversation/930fbb65-cb18-45c9-a2ee-1d11890fd42f
+Authorization: Bearer {{accessToken1}}
+
+### Mark a message as read
+PATCH {{baseUrl}}/api/messages/read/1
+Authorization: Bearer {{accessToken1}}
+
+### Mark a message as read
+GET {{baseUrl}}/api/chats
+Authorization: Bearer {{accessToken1}}
